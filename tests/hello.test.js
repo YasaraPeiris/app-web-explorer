@@ -31,7 +31,7 @@ const loginMock = RequestMock()
   .respond({ token: personalToken }, 200, { 'Access-Control-Allow-Origin': '*' });
 
 fixture('Hello test')
-  .page('http://localhost:8080/#/hello')
+  .page('https://l.rec.la:8080/#/hello')
   .requestHooks(loginLogger, initMock, loginMock);
 
 test('Login', async testController => {

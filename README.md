@@ -7,16 +7,16 @@ _Prerequisites:_
 
 ## How to?
 
-| Task                              | Command                        |
-| --------------------------------- | ------------------------------ |
-| Install dependencies              | `yarn install`                 |
-| Setup dev environment             | `yarn setup`                   |
-| Create distribution               | `yarn build`                   |
-| Publish distribution              | `yarn upload ${COMMIT_MESSAGE}`|
-| Clear distribution                | `yarn clear`                   |
-| Run the app locally               | `yarn start`                   |
-| Run tests                         | `yarn test`                    |
-| Run eslint                        | `yarn lint`                    |
+| Task                            | Command                         |
+| ------------------------------- | ------------------------------- |
+| Install dependencies            | `yarn install`                  |
+| Setup dev environment           | `yarn setup`                    |
+| Create distribution             | `yarn build`                    |
+| Publish distribution            | `yarn upload ${COMMIT_MESSAGE}` |
+| Clear distribution              | `yarn clear`                    |
+| Run the app locally in dev mode | `yarn start`                    |
+| Run tests                       | `yarn test`                     |
+| Run eslint                      | `yarn lint`                     |
 
 ### Publish to github pages
 

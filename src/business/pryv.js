@@ -1,5 +1,4 @@
 // @flow
-
 const request = require('superagent');
 
 class Pryv {
@@ -33,7 +32,6 @@ class Pryv {
       });
     return res.body;
   }
-
 }
 
 module.exports = Pryv;
