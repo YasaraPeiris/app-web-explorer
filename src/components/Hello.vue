@@ -59,7 +59,7 @@ export default {
     validForm: false,
   }),
   async created () {
-    this.ctx = this.$root.$ctx;
+    this.ctx = this.$root.ctx;
   },
   methods: {
     async submit () {
