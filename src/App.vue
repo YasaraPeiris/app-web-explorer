@@ -21,11 +21,18 @@
 </template>
 
 <script>
+import Context from './context.js';
 export default {
   name: 'App',
   data: () => ({
     title: 'App-web-skeleton',
+    ctx: {},
   }),
+  async created () {
+    this.$root.$ctx = new Context(this.$route.query);
+    await this.$root.$ctx.init();
+    this.ctx = this.$root.$ctx;
+  },
   errorCaptured (err, vm, info) {
     alert(`[Vue warn]: Unexpected error in ${info}:
       ${err}`);

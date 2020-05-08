@@ -34,14 +34,12 @@
       :successMsg="success"
       :errorMsg="error"
     />
-
   </div>
 </template>
 
 <script>
 import Password from './bits/Password.vue';
 import Alerts from './bits/Alerts.vue';
-import Context from '../context.js';
 
 export default {
   components: {
@@ -61,16 +59,15 @@ export default {
     validForm: false,
   }),
   async created () {
-    this.ctx = new Context(this.$route.query);
-    await this.ctx.init();
+    this.ctx = this.$root.$ctx;
   },
   methods: {
     async submit () {
       if (this.$refs.form.validate()) {
         this.submitting = true;
         try {
-          await this.ctx.pryv.login(this.username, this.password, this.ctx.appId);
-          this.success = 'Login successful.';
+          this.ctx.conn = await this.ctx.pryvService.login(this.username, this.password, this.ctx.appId);
+          this.success = 'Login successful. : ' + this.ctx.conn.apiEndpoint;
         } catch (err) {
           this.error = err.toString();
         } finally {

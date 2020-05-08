@@ -22,17 +22,13 @@ const loginLogger = RequestLogger(loginEndpoint, {
 
 // ---------- Requests mocks ----------
 
-const initMock = RequestMock()
-  .onRequestTo(initEndpoint)
-  .respond({ api: 'https://{username}.pryv.me/' }, 200, { 'Access-Control-Allow-Origin': '*' });
-
 const loginMock = RequestMock()
   .onRequestTo(loginEndpoint)
   .respond({ token: personalToken }, 200, { 'Access-Control-Allow-Origin': '*' });
 
 fixture('Hello test')
   .page('https://l.rec.la:8080/#/hello')
-  .requestHooks(loginLogger, initMock, loginMock);
+  .requestHooks(loginLogger, loginMock);
 
 test('Login', async testController => {
   await testController

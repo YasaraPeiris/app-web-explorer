@@ -1,7 +1,7 @@
 // @flow
-
-import Pryv from './business/pryv.js';
+import Pryv from 'pryv';
 import config from './config.js';
+require('./business/PryvServiceExtension'); // patch Pryv lib
 
 type QueryParameters = {
   pryvServiceInfoUrl: string,
@@ -9,17 +9,25 @@ type QueryParameters = {
 
 class Context {
   appId: string;
-  serviceInfoUrl: string;
-  pryv: Pryv;
+  Pryv: Pryv;
+  pryvService: Pryv.Service;
+  initialized: boolean;
+  conn: Pryv.Connection;
 
   constructor (queryParams: QueryParameters) {
+    queryParams = queryParams || {};
     this.appId = config.appId;
-    this.serviceInfoUrl = queryParams.pryvServiceInfoUrl || config.pryvServiceInfoUrl;
+    const serviceInfoUrl = queryParams.pryvServiceInfoUrl || config.pryvServiceInfoUrl;
+    this.pryvService = new Pryv.Service(serviceInfoUrl);
+    this.initialized = false;
+  }
+
+  isConnected () {
+    return this.conn !== null;
   }
 
   async init () {
-    this.pryv = new Pryv(this.serviceInfoUrl);
-    await this.pryv.init();
+    await this.pryvService.info();
   }
 }
 
